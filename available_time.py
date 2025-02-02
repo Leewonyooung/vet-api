@@ -8,7 +8,7 @@ Usage:
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 import os, json
-import hosts, auth
+import hosts
 
 router = APIRouter()
 

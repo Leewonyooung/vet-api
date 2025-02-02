@@ -6,7 +6,7 @@ Usage: Manage favorite
 """
 
 from fastapi import APIRouter, HTTPException
-import hosts, auth
+import hosts
 import json
 
 router = APIRouter()

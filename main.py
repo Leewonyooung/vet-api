@@ -14,7 +14,6 @@ from available_time import router as available_router
 from species import router as species_router 
 from reservation import router as reservation_router
 from myprofile import mypage_router
-from auth import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
 
@@ -22,7 +21,6 @@ app = FastAPI()
 
 API_KEY_HEADER = APIKeyHeader(name="Authorization", auto_error=False)
 
-app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(clinic_router, prefix="/clinic", tags=["clinic"])
                 #    , dependencies=[Depends(API_KEY_HEADER)])
 app.include_router(favorite_router, prefix="/favorite", tags=["favorite"])

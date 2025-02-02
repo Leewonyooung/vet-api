@@ -6,11 +6,9 @@ Usage: Manage Pet
 """
 
 from fastapi import APIRouter, HTTPException, File, UploadFile, Form
-import os
-import shutil
-import hosts, auth
+import os, shutil, hosts, json
 from botocore.exceptions import NoCredentialsError
-import json
+
 
 router = APIRouter()
 

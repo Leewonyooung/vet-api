@@ -6,8 +6,7 @@ Usage:
 """
 
 from fastapi import APIRouter, HTTPException
-import hosts, auth
-import json
+import hosts, json
 
 router = APIRouter()
 

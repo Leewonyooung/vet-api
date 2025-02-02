@@ -6,13 +6,9 @@ Usage:
 """
 
 from fastapi import APIRouter, File, UploadFile, HTTPException
-import os
-import hosts
+import os, hosts, io, json
 from fastapi.responses import StreamingResponse
-import io
 from botocore.exceptions import ClientError, NoCredentialsError
-import auth
-import json
 
 mypage_router = APIRouter()
 

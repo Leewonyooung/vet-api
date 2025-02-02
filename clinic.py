@@ -7,12 +7,11 @@ Usage:
 
 from fastapi import APIRouter, File, UploadFile, HTTPException
 import os, json
-import hosts,auth
+import hosts
 from botocore.exceptions import NoCredentialsError
 from botocore.exceptions import ClientError
 from fastapi.responses import StreamingResponse
 import io
-from auth import get_current_user
 
 router = APIRouter()
 

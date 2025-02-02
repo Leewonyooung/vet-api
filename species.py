@@ -6,8 +6,7 @@ Usage: Manage species types and categories
 """
 
 from fastapi import APIRouter, HTTPException, Query
-import hosts, auth
-import json
+import hosts, json
 
 router = APIRouter()
 
