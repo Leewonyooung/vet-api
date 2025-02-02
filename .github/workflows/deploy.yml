@@ -1,0 +1,63 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: wylee99/fastapi
+          stage: main
+          yaml: |
+            name: fastapi
+            app: python@3.9
+            options:
+              env:
+                - name: VET_FIREBASE_KEY
+                  var: VET_FIREBASE_KEY
+                - name: AWS_ACCESS_KEY_ID
+                  var: AWS_ACCESS_KEY_ID
+                - name: AWS_SECRET_ACCESS_KEY
+                  var: AWS_SECRET_ACCESS_KEY
+                - name: AWS_S3_BUCKET_NAME
+                  var: AWS_S3_BUCKET_NAME
+                - name: VET_DB
+                  var: VET_DB
+                - name: VET_DB_USER
+                  var: VET_DB_USER
+                - name: VET_DB_PASSWORD
+                  var: VET_DB_PASSWORD
+                - name: VET_DB_TABLE
+                  var: VET_DB_TABLE
+                - name: VET_PORT
+                  var: VET_PORT
+                - name: REDIS_HOST
+                  var: REDIS_HOST
+                - name: REDIS_PORT
+                  var: REDIS_PORT
+                - name: REDIS_PASSWORD
+                  var: REDIS_PASSWORD
+                - name: ALGORITHM
+                  var: ALGORITHM
+                - name: SECRET_KEY
+                  var: SECRET_KEY
+              ports: "8000"
+              start: uvicorn main:app --host 0.0.0.0 --port 8000
+              buildenv: []
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
+              preset: python-fastapi
